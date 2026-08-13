@@ -4,7 +4,6 @@ from typing import List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        print("unsorted:\t",nums)
         # Sort list for 'Two-Pointers' algorithm:
         # HYPOTHETICALLY: incrementing to compare every element with every other element in an unsorted list = O(n^2)
         # HERE: the 'sort' with the addition of running Two Pointers on a now-sorted list overall = O(n log n)
@@ -44,9 +43,4 @@ for n in range(len(nums)):
 init = Solution()
 ans = init.twoSum(nums,target)
 # Use the returned values to look up their original indices in the Hash Map.
-print("sorted:\t\t",nums)
-print("dict:\t\t",hashmap)
-print("output:\t\t",ans[0],ans[1])
-print("nums:\t\t",nums[ans[0]],nums[ans[1]])
-print(hashmap.get(ans[0]),hashmap.get(ans[1]))
 print(hashmap[nums[ans[0]]],hashmap[nums[ans[1]]])
