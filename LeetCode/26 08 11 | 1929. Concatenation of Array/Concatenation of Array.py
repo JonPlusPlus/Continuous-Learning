@@ -9,7 +9,7 @@ class Solution:
 
 
 # Initialises demo input.
-# We do not directly call a constructor because there is no __init__ method
+# We do not directly call a constructor because there is no __init__ method.
 init = Solution()
 ans = init.getConcatenation([1, 3, 2, 1])
 # Prints the return output of the function, when the demo input is used.
