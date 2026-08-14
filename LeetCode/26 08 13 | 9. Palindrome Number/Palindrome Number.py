@@ -1,31 +1,22 @@
-# Put simply, the solution achieves linear complexity in both time and space: O(n).
-# More accurately, O(d) is achieved, where d = the number of digits in x.
+# Achieves logarithmic time, O(log₁₀n), where n is the value of x,
+# and constant space, O(1), complexity, using only constant auxiliary space.
 class Solution:
     def isPalindrome(self, x: int) -> bool:
-        # Initialise an array called modulus (mod).
-        # 121 mod 10 = 1, 12 mod 10 = 2, 1 mod 10 = 1 | mod[1,2,1]
-        mod = []
-
-        if x >= 0:
-            while x > 0:
-                # Appends the last digit of an integer to the list.
-                # Maintaining the original order is not necessary, as we are looking
-                # for palindromes, which are the same when mirrored | 121==121, 10!=01
-                mod.append(x % 10)
-                x = x // 10
-
-            for m in range(len(mod)//2):
-                # Check each element matches its mirrored position.
-                # mod[0]==mod[-1], mod[1]==mod[-2], mod[2]==mod[-3], etc...
-                if mod[m] == mod[(len(mod) - 1) - m]:
-                    continue
-                else:
-                    return False
-
-            return True
-
-        else:
+        # Any negative number, or number ending in zero, other than zero itself, returns False.
+        # Not catching numbers that end in zero causes the logic below to break, as integers can't have leading zeros.
+        if x < 0 or (x % 10 == 0 and x != 0):
             return False
+
+        # Variable becomes mirror of the latter-half of x, for comparison with the first.
+        half_mirror = 0
+
+        while x > half_mirror:
+            # Extract last digit of x, and append into last digit of half_mirror:
+            # x=121,hm=0 -> x=12,hm=1 -> x=1,hm=12
+            half_mirror = half_mirror * 10 + x % 10
+            x //= 10
+
+        return x == half_mirror or x == half_mirror // 10
 
 
 init = Solution()
